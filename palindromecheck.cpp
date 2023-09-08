@@ -4,6 +4,8 @@ using namespace std;
 
 void palindromeCheck(){
 	string str;
+	cout <<"\nCheck if a number is palindrome-"<< endl;
+	
 	cout <<"Enter number:";
 	cin >> str;
 	int len=str.size();
@@ -21,7 +23,3 @@ void palindromeCheck(){
 
 }
 
-int main(){
-	palindromeCheck();
-	return 0;
-}

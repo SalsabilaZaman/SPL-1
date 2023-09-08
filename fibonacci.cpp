@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-long int fibonacci(long int arr[],long int n){
+double fibonacci(double arr[],long int n){
 	if (arr[n] !=-1)
 	   return arr[n];
 	else if(n==0)
@@ -12,17 +12,15 @@ long int fibonacci(long int arr[],long int n){
 	   arr[n]=fibonacci(arr,n-1)+fibonacci(arr,n-2);     
 	return arr[n];
 }
-int main(){
+void fibonacciGenerator(){
 	long int n;
 	cout << "Enter length of your fibonacci sequence-";
 	cin >> n;
-	long int arr[n];
-	for(int i=0;i<n;i++)
+	double arr[n+1];
+	for(int i=0;i<=n;i++)
 	   arr[i]=-1;
 	
-	fibonacci(arr,n-1);
-	for(long int i=0;i<n;i++)
+	fibonacci(arr,n);
+	for(long int i=0;i<=n;i++)
 	  cout << arr[i] << " ";
-	
-	return 0;  
 }

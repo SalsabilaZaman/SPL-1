@@ -1,8 +1,6 @@
 #include<iostream>
 using namespace std;
 
-
-
 void GCDcalculate(){
 		int n;
 		cout << "How many Number-";
@@ -33,7 +31,3 @@ void GCDcalculate(){
 		cout << "GCD of given "<< n <<" numbers is-"<< big << endl;
 }
 
-int main(){
-	GCDcalculate();
-	return 0;
-}

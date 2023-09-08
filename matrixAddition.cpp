@@ -1,8 +1,8 @@
 #include<iostream>
 using namespace std;
-#define MAX 100
+#define matMAX 100
 
-int matA[MAX][MAX]={0};
+int mat_A[matMAX][matMAX]={0};
 
 void matrixAddition(){
 	int i,j,k;
@@ -20,19 +20,15 @@ void matrixAddition(){
 		for(j=0;j<row;j++)
 		  for(k=0;k<column;k++){
 		    cin >> input;
-		    matA[j][k]+=input;
+		    mat_A[j][k]+=input;
 		  }      
 		   
 	}
 	cout << "Resultant Matrix-" << endl;
 	for(j=0;j<row;j++){
 	  for(k=0;k<column;k++)
-		cout << matA[j][k] <<" ";
+		cout << mat_A[j][k] <<" ";
 	  cout <<endl;
 	}  			 
 }
 
-int main(){
-	matrixAddition();
-	return 0;
-}

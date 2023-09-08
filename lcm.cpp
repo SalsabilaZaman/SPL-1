@@ -32,7 +32,3 @@ void LCMcalculate(){
 		cout << "LCM of given "<< n <<" numbers is-"<< lcm << endl;
 }
 
-int main(){
-	LCMcalculate();
-	return 0;
-}

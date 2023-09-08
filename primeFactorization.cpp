@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-#define MAX 1000007
+#define MAX 1000009
 int smallestPrimeFactor[MAX];
 
 void smallestPrimeFinder(){
@@ -19,7 +19,7 @@ void smallestPrimeFinder(){
 void primeFactorization(int num){
 	smallestPrimeFinder();
 	int i;
-	cout <<"Prime Factorization of "<< num <<"-" << endl;
+	cout <<"\nPrime Factorization of "<< num <<"-" << endl;
 	for(i=num;i>1;){
 		cout << smallestPrimeFactor[i];
 		i=i/smallestPrimeFactor[i];
@@ -27,12 +27,11 @@ void primeFactorization(int num){
 		  cout <<" X ";
 	}
 }
-int main(){
+void Factorization(){
 	int num;
 	cout << "Enter a number: ";
 	cin >> num;
 	
 	primeFactorization(num);
 	
-	return 0;
 }

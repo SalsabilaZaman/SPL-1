@@ -11,7 +11,7 @@ long int factorial(long int arr[],int n){
 	return arr[n];   
 }
 
-int main(){
+void factorialGenerator(){
 	int n;
 	cout << "Enter the number you want to factorial!-";
 	cin >> n;
@@ -23,5 +23,4 @@ int main(){
 	
 	for(int i=0;i<n;i++)
 	   cout << arr[i] << " ";
-	return 0;
 }
