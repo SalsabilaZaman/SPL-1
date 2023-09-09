@@ -18,17 +18,26 @@ int gcd(int x,int y){
 
 void LCMcalculate(){
 		int n;
-		cout << "How many Number-";
+		int input;
+		cout << "\nCalculate LCM(Least Common Multiple)!" <<endl;
+		cout << "How many Numbers-";
 		cin >> n;
 		int arr[n];
 		for(int i=0;i<n;i++){
+		    again:
 		    cout << "Enter Number-" << i+1 << ":";
-		    cin >> arr[i];
+		    cin >> input;
+		    if(input==0){
+		       cout <<"Invalid Input!"<<endl;
+		       goto again;
+		    }
+		    else
+		       arr[i]=input;   
 		}      
 		int lcm=arr[0];     
 		for(int i=1;i<n;i++)
 			lcm=(lcm*arr[i])/gcd(lcm,arr[i]);      
 	     
-		cout << "LCM of given "<< n <<" numbers is-"<< lcm << endl;
+		cout << "\nLCM of given "<< n <<" numbers is-"<< lcm << endl;
 }
 

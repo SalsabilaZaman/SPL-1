@@ -36,10 +36,10 @@ void DigitsManipulation(){
 	string str;
 	long int n;
 	int c;
-	cout <<"1.Calculate Sum of digits of a given number"<<endl;
+	cout <<"\n1.Calculate Sum of digits of a given number"<<endl;
 	cout <<"2.Calculate Product of digits of a given number"<<endl;
 	cout <<"3.Reverse the digits of a number"<< endl;
-	cout <<"Enter Choice-";
+	cout <<"\nEnter Choice-";
 	cin >> c;
 	if(c==1){
 	   cout << "Enter a number-";

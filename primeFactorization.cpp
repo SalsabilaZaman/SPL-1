@@ -4,7 +4,7 @@ using namespace std;
 int smallestPrimeFactor[MAX];
 
 void smallestPrimeFinder(){
-	int i,j;
+	long long int i,j;
 	for(i=1;i<MAX;i++)
 	   smallestPrimeFactor[i]=i;
 	for(i=4;i<MAX;i+=2)
@@ -18,8 +18,8 @@ void smallestPrimeFinder(){
 
 void primeFactorization(int num){
 	smallestPrimeFinder();
-	int i;
-	cout <<"\nPrime Factorization of "<< num <<"-" << endl;
+	long long int i;
+	cout <<"\nPrime Factorization of "<< num <<"=" << endl;
 	for(i=num;i>1;){
 		cout << smallestPrimeFactor[i];
 		i=i/smallestPrimeFactor[i];
@@ -28,7 +28,8 @@ void primeFactorization(int num){
 	}
 }
 void Factorization(){
-	int num;
+	cout <<"\nFactorize a number into primes!"<<endl;
+	long long int num;
 	cout << "Enter a number: ";
 	cin >> num;
 	

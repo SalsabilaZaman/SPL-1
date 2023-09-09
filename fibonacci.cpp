@@ -14,7 +14,7 @@ double fibonacci(double arr[],long int n){
 }
 void fibonacciGenerator(){
 	long int n;
-	cout << "Enter length of your fibonacci sequence-";
+	cout << "\nEnter length of your fibonacci sequence-";
 	cin >> n;
 	double arr[n+1];
 	for(int i=0;i<=n;i++)
@@ -22,5 +22,5 @@ void fibonacciGenerator(){
 	
 	fibonacci(arr,n);
 	for(long int i=0;i<=n;i++)
-	  cout << arr[i] << " ";
+	  printf("%.0lf  ",arr[i]);
 }

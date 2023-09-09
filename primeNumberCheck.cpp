@@ -15,8 +15,8 @@ void checkPrime(){
 void primeGenerator(){
 	checkPrime();
 	int lowerbound,upperbound;
-	cout << "Generate all prime numbers in a given range: "<<endl;
-	cout << "Enter lower bound:";
+	cout << "\nWelcome to Prime Generator!Generate all prime numbers in a given range! "<<endl;
+	cout << "\nEnter lower bound:";
 	cin >> lowerbound;
 	cout << "Enter upper bound:";
 	cin >> upperbound;
@@ -28,7 +28,7 @@ void primeGenerator(){
 void PrimeChecker(){
 	checkPrime();
 	int choice;
-	cout << "Check if a number is prime or not" <<endl;
+	cout << "\nWelcome to Prime Checker!" <<endl;
 	int num;
 	cout << "Enter a number:";
 	cin >> num;

@@ -3,6 +3,7 @@ using namespace std;
 
 void GCDcalculate(){
 		int n;
+		cout << "\nCalculate GCD(Greatest Common Divisor)!" <<endl;
 		cout << "How many Number-";
 		cin >> n;
 		int arr[n];
@@ -28,6 +29,6 @@ void GCDcalculate(){
 		     if (big==1)
 		        break;        
 		 }      
-		cout << "GCD of given "<< n <<" numbers is-"<< big << endl;
+		cout << "\nGCD of given "<< n <<" numbers is-"<< big << endl;
 }
 
