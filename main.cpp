@@ -11,6 +11,13 @@ using namespace std;
 #include "primeFactorization.cpp"
 #include "primeNumberCheck.cpp"
 #include "matrixMultiply.cpp"
+#include "inversionDeterminant.cpp"
+#include "matrixPower.cpp"
+#include "TransposeMatrix.cpp"
+#include  "jacobiEigen.cpp"
+#include "expressiontree.cpp"
+
+
 
 
 
@@ -30,10 +37,18 @@ int main(){
 	cout << "        6.GCD Calculator\n";
 	cout << "        7.LCM Calculator\n";
 	cout << "	8.Fibonacci Sequence Generator\x1B[0m\n";
+	
+	
 	cout << "\n\n\x1B[36m	  Specialization\n";
 	cout <<"    ---------------------------\n";
 	cout << "\x1B[35m	9.Matrix Addition\n";
-	cout << "	10.Matrix Multiplication\x1B[0m\n";
+	cout << "	10.Matrix Multiplication\n";
+	cout << "	11.Matrix Determinant\n";
+	cout << "	12.Matrix Inversion\n";
+	cout << "	13.Matrix Power Calculation\n";
+	cout << "	14.Matrix Transposition\n";
+	cout << "	15.Calculate eigenvalue and eigenvectors\n"; 
+	cout <<	"	16.Expression Evaluation\x1B[0m\n";
 	again:
 	cout <<"\nEnter your choice-";
 	cin >> choice;
@@ -68,7 +83,26 @@ int main(){
 		case 10:
 		       matrixMultiply();
 		       break;
-		       
+		case 11:{
+			long int deter=calculate_Determinant();
+			cout<<endl<<"Determinant of the given matrix="<< deter<<endl;
+			break;
+		}
+		case 12:
+			matrixInversion();
+			break;
+		case 13:
+			matrixPower();
+			break;
+		case 14:
+			matrixTranspose();
+			break;			       
+		case 15:
+			eigenValue();
+			break;
+		case 16:
+			expressionEvaluate();
+			break;	       
 		default:
 		       cout << "\x1B[31mWrong Input! Try Again!\x1B[0m";
 		       goto again;
