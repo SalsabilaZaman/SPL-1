@@ -139,6 +139,21 @@ nptr build(vector<string> s)
 	return t;
 }
 
+stack<double> st;
+double calculation(double a,double b,string op){
+	if(op=="+")
+		return a+b;
+	else if(op=="-")
+		return a-b;
+	else if(op=="*")
+		return a*b;
+	else if(op=="/")
+		return a/b;
+	else if(op=="^")
+		return pow(a,b);
+	else
+		return 0;	
+}
 
 void postorder(nptr root)
 {
@@ -147,15 +162,24 @@ void postorder(nptr root)
 		postorder(root->left);
 		postorder(root->right);
 		cout << root->data;
+		if(isOperand(root->data))
+			st.push(stod(root->data));
+		else{
+		     double b=st.top();
+		     st.pop();
+		     double a=st.top();
+		     st.pop();
+		     double calc=calculation(a,b,root->data);
+		     st.push(calc);	
+		}	
 	}
 }
 
-
-void expressionEvaluate()
-{
-    string expression;
-    cout << "Enter an arithmetic expression: ";
-    cin >>expression;
+void expressionEvaluate(string expression){
+    //string expression;
+    //cout << "Enter an arithmetic expression: ";
+    //cin >>expression;
+    expression="("+expression+")";    
 
     vector<string> tokens = tokenizeExpression(expression);
 
@@ -168,6 +192,7 @@ void expressionEvaluate()
     nptr root = build(tokens);
     cout <<endl<<"Converted postfix expression-";	
     postorder(root);
+    cout<<"\n\nAnswer="<<st.top()<<endl;
 
 }
 

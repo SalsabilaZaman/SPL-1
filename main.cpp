@@ -1,6 +1,6 @@
-#include<iostream>
-#include<cstdlib>
+#include <bits/stdc++.h>
 using namespace std;
+
 #include "digits.cpp"
 #include "factorial.cpp"
 #include "fibonacci.cpp"
@@ -52,6 +52,7 @@ int main(){
 	again:
 	cout <<"\nEnter your choice-";
 	cin >> choice;
+	
 	switch(choice){
 		case 1:
 			PrimeChecker();
@@ -100,10 +101,13 @@ int main(){
 		case 15:
 			eigenValue();
 			break;
-		case 16:
-			expressionEvaluate();
+		case 16:{
+			string expression;
+        		cout << "Enter an arithmetic expression: ";
+			getline(cin,expression);
+			expressionEvaluate(expression);
 			break;	       
-		default:
+		}default:
 		       cout << "\x1B[31mWrong Input! Try Again!\x1B[0m";
 		       goto again;
 	}
