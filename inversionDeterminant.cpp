@@ -3,8 +3,8 @@
 #include<time.h>
 using namespace std;
 #define matMAX 100
-
-double mat_A[matMAX][matMAX]={0};
+int n;
+double matrix_A[matMAX][matMAX]={0};
 double mat_L[matMAX][matMAX],mat_U[matMAX][matMAX];
 int inputMatrix(){
 	srand(time(0));
@@ -20,23 +20,23 @@ int inputMatrix(){
 	cout << "Enter your matrix-\n";
 	for(int i=0;i<row;i++)
 	   for(int j=0;j<row;j++)
-	      mat_A[i][j]=(rand()%10)+1;
+	      matrix_A[i][j]=(rand()%10)+1;
 	
 	cout << "Matrix-A="<< endl;
 	for(int i=0;i<row;i++){
 	   for(int j=0;j<row;j++)
-	     cout << mat_A[i][j]<<" ";
+	     cout << matrix_A[i][j]<<" ";
 	   cout << endl;
 	}	      
 	return row;
 }	
 
-long int calculate_Determinant(int n){
-		//LU decomposition
+long int calculate_Determinant(){
+	n=inputMatrix();
 	for(int i=0;i<n;i++)
 	   for(int j=0;j<n;j++){
 	   	mat_L[i][j]=0;
-	   	mat_U[i][j]=mat_A[i][j];
+	   	mat_U[i][j]=matrix_A[i][j];
 	   }
 	for(int i=0;i<n;i++)
 	   mat_L[i][i]=1;
@@ -45,9 +45,11 @@ long int calculate_Determinant(int n){
 		if(pivot ==0){
 		    for(int j=i+1;j<n;j++)
 			   if(mat_U[j][i]!=0){
-			   	double swap=mat_U[j][i];
-			   	mat_U[j][i]=mat_U[i][i];
-			   	mat_U[i][i]=swap;
+			   	for(int k=0;k<n;k++){
+			   	    double swap=mat_U[j][k];
+			   	    mat_U[j][k]=mat_U[i][k];
+			   	    mat_U[i][k]=swap;
+			   	}
 			   }	
 		
 		}
@@ -72,7 +74,7 @@ long int calculate_Determinant(int n){
 	return determin;
 }
 
-void inverseCalculate(int n){
+void inverseCalculate(){
 
 	for(int i=0;i<n;i++){		//making all diagonal elements to 1
 		double pivot=mat_U[i][i];
@@ -106,7 +108,7 @@ void inverseCalculate(int n){
 		  }
 	         
 	}
-	
+	cout <<"Inverse Matrix="<<endl;
 	for(int i=0;i<n;i++){
 	   for(int j=0;j<n;j++)
 	     printf("%7.4lf ",mat_L[i][j]);
@@ -115,11 +117,11 @@ void inverseCalculate(int n){
 
 }
 
-int main(){
-	int num=inputMatrix();
-	double ans=calculate_Determinant(num);
+void matrixInversion(){
+	//int num=inputMatrix();
+	double ans=calculate_Determinant();
 	cout<<endl<<"Determinant of the given matrix="<< ans<<endl<<endl;
-	cout <<"Inverse Matrix="<<endl;
-	inverseCalculate(num);
-	return 0;
+	//cout <<"Inverse Matrix="<<endl;
+	inverseCalculate();
+	
 }

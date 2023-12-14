@@ -3,18 +3,18 @@ using namespace std;
 
 vector<double> coefficientsOfXsquare;
 vector<double> coefficientsOfX;
-vector<double> constants;
+vector<double> Constants;
 
-bool isOp(string c) {
+bool ISOp(string c) {
     return c == "+" || c == "-" || c == "*" || c == "/" || c == "^";
 }
-bool isOperator(char c) {
+bool ISOperator(char c) {
     return c == '+' || c == '-' || c == '*' || c == '/' ||c == '=';
 }
-bool isOperand(string token) {
-    return !isOp(token) && token != "(" && token != ")";
+bool ISOperand(string token) {
+    return !ISOp(token) && token != "(" && token != ")";
 }
-string makeOpposite(string sign){
+string MakeOpposite(string sign){
 	string oppositeSign;
 	if(sign=="+")
 		oppositeSign="-";
@@ -22,7 +22,7 @@ string makeOpposite(string sign){
 		oppositeSign="+";
 	return oppositeSign;		
 }
-void standardizeEquation(vector<string> tokens){
+void StandardizeEquation(vector<string> tokens){
 	int i=0;
 	while(tokens[i]!="="){
 		if(tokens[i].find("x")!=string::npos && tokens[i].find("^")!=string::npos){
@@ -45,12 +45,12 @@ void standardizeEquation(vector<string> tokens){
 			   coOfX+=tokens[i].substr(0,tokens[i].find("x"));			
 			coefficientsOfX.push_back(stod(coOfX));
 		}
-		else if(!isOp(tokens[i])){
+		else if(!ISOp(tokens[i])){
 		    	string constant="";
 			if(i!=0)
 			   constant=tokens[i-1];
 			constant+=tokens[i];			
-			constants.push_back(stod(constant));
+			Constants.push_back(stod(constant));
 		}
 		i++;	
 	}
@@ -58,10 +58,10 @@ void standardizeEquation(vector<string> tokens){
 	while(i<tokens.size()){
 		if(tokens[i].find("x")!=string::npos && tokens[i].find("^")!=string::npos){
 			string coOfX;
-			if(isOp(tokens[i-1]))
-			   coOfX=makeOpposite(tokens[i-1]);
+			if(ISOp(tokens[i-1]))
+			   coOfX=MakeOpposite(tokens[i-1]);
 			else
-			   coOfX=makeOpposite("+");   
+			   coOfX=MakeOpposite("+");   
 			if(tokens[i].substr(0,tokens[i].find("x"))=="")
 			   coOfX+="1";
 			else   			
@@ -70,30 +70,30 @@ void standardizeEquation(vector<string> tokens){
 		}
 		else if(tokens[i].find("x")!=string::npos){
 			string coOfX;
-			if(isOp(tokens[i-1]))
-			   coOfX=makeOpposite(tokens[i-1]);
+			if(ISOp(tokens[i-1]))
+			   coOfX=MakeOpposite(tokens[i-1]);
 			else
-			   coOfX=makeOpposite("+");   
+			   coOfX=MakeOpposite("+");   
 			if(tokens[i].substr(0,tokens[i].find("x"))=="")
 			   coOfX+="1";
 			else   			
 			   coOfX+=tokens[i].substr(0,tokens[i].find("x"));			
 			coefficientsOfX.push_back(stod(coOfX));
 		}
-		else if(isOperand(tokens[i])){
+		else if(ISOperand(tokens[i])){
 		    	string constant;
-			if(isOp(tokens[i-1]))
-			   constant=makeOpposite(tokens[i-1]);
+			if(ISOp(tokens[i-1]))
+			   constant=MakeOpposite(tokens[i-1]);
 			else
-			   constant=makeOpposite("+");
+			   constant=MakeOpposite("+");
 			constant+=tokens[i];			
-			constants.push_back(stod(constant));
+			Constants.push_back(stod(constant));
 		}
 		i++;
 	}
 
 }
-vector<string> tokenizeEquation(string expression) {
+vector<string> TokenizeEquation(string expression) {
     vector<string> tokens;
     string token;
 
@@ -102,7 +102,7 @@ vector<string> tokenizeEquation(string expression) {
             continue;
         }
 
-        if (isOperator(c) || c == '(' || c == ')') {
+        if (ISOperator(c) || c == '(' || c == ')') {
             
             if (!token.empty()) {
                 tokens.push_back(token);
@@ -123,18 +123,18 @@ vector<string> tokenizeEquation(string expression) {
     return tokens;
 }
 
-int main(){
+void quadraticEquationSolver(){
 	string equation;
 	double a=0,b=0,c=0,x;
 	cout <<"Enter your equation:";
-	getline(cin,equation);
-	vector<string> tokens=tokenizeEquation(equation);
+	cin>>equation;
+	vector<string> tokens=TokenizeEquation(equation);
 	
 	cout<<"Tokens-";
 	for(auto t:tokens)
 		cout <<t<<" ";
 	cout <<endl;
-	standardizeEquation(tokens);
+	StandardizeEquation(tokens);
 	cout<<"Coefficients Of X^2-";
 	for(auto c1:coefficientsOfXsquare){
 		a+=c1;
@@ -148,7 +148,7 @@ int main(){
 	}	
 	cout <<endl;
 	cout<<"Constants-";
-	for(auto c2:constants){
+	for(auto c2:Constants){
 		c+=c2;
 		cout <<c2<<" ";
 	}	
@@ -166,7 +166,11 @@ int main(){
 		cout << "x2="<<(((-b)-pow(determinant,0.5))/2*a)<<endl;
 	}
 	else{
+		//"Square root of -4 is "
+         //<< sqrt(std::complex<double>(-4, 0)) << endl
 		cout<<"Roots are complex!";
+		//cout << "x1="<<(((-b)+sqrt(complex<double>(determinant,0)))/2*a)<<endl;
+		//cout << "x2="<<(((-b)-sqrt(complex<double>(determinant,0)))/2*a)<<endl;
 	}
-	return 0;
+
 }

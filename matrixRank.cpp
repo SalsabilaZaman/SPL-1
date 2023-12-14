@@ -28,11 +28,11 @@ void findEchelon(){
 	for(int i=0;i<row;i++){
 		double pivot=matrix_A[i][i];
 		for(int j=i+1;j<row;j++)
-			if(matrix_A[j][i]!=0){
-				double div=matrix_A[j][i]/pivot;
-				for(int k=0;k<column;k++)
-					matrix_A[j][k]+=(-div)*matrix_A[i][k];
-			}
+		    if(matrix_A[j][i]!=0){
+			double div=matrix_A[j][i]/pivot;
+			for(int k=0;k<column;k++)
+			   matrix_A[j][k]+=(-div)*matrix_A[i][k];
+		    }
 		
 	}
 }

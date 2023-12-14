@@ -16,6 +16,8 @@ using namespace std;
 #include "TransposeMatrix.cpp"
 #include  "jacobiEigen.cpp"
 #include "expressiontree.cpp"
+#include "linearequationSolver.cpp"
+#include "quadraticequationSolver.cpp"
 
 
 
@@ -38,7 +40,6 @@ int main(){
 	cout << "        7.LCM Calculator\n";
 	cout << "	8.Fibonacci Sequence Generator\x1B[0m\n";
 	
-	
 	cout << "\n\n\x1B[36m	  Specialization\n";
 	cout <<"    ---------------------------\n";
 	cout << "\x1B[35m	9.Matrix Addition\n";
@@ -48,7 +49,10 @@ int main(){
 	cout << "	13.Matrix Power Calculation\n";
 	cout << "	14.Matrix Transposition\n";
 	cout << "	15.Calculate eigenvalue and eigenvectors\n"; 
-	cout <<	"	16.Expression Evaluation\x1B[0m\n";
+	cout <<	"	16.Expression Evaluation\n";
+	cout << "       17.Linear Equation Solver\n";
+	cout << "       18.Quadratic Equation Solver\x1B[0m\n";
+	
 	again:
 	cout <<"\nEnter your choice-";
 	cin >> choice;
@@ -104,10 +108,17 @@ int main(){
 		case 16:{
 			string expression;
         		cout << "Enter an arithmetic expression: ";
-			getline(cin,expression);
+			cin >>expression;
 			expressionEvaluate(expression);
 			break;	       
-		}default:
+		}
+		case 17:
+			linearEquationSolver();
+			break;
+		case 18:
+			quadraticEquationSolver();
+			break;
+		default:
 		       cout << "\x1B[31mWrong Input! Try Again!\x1B[0m";
 		       goto again;
 	}

@@ -1,14 +1,15 @@
 #include <iostream>
 #include <vector>
 #include <string>
+using namespace std;
 
 bool isOperator(char c) {
     return c == '+' || c == '-' || c == '*' || c == '/' || c == '^';
 }
 
-std::vector<std::string> tokenizeExpression(const std::string& expression) {
-    std::vector<std::string> tokens;
-    std::string token;
+vector<string> tokenizeExpression(string expression) {
+    vector<string> tokens;
+    string token;
 
     for (char c : expression) {
         if (c == ' ') {
@@ -21,7 +22,7 @@ std::vector<std::string> tokenizeExpression(const std::string& expression) {
                 tokens.push_back(token);
                 token.clear();
             }
-            tokens.push_back(std::string(1, c));
+            tokens.push_back(string(1, c));
         } else {
             
             token += c;
@@ -37,17 +38,17 @@ std::vector<std::string> tokenizeExpression(const std::string& expression) {
 }
 
 int main() {
-    std::string expression;
-    std::cout << "Enter an arithmetic expression: ";
-    std::getline(std::cin, expression);
+    string expression;
+    cout << "Enter an arithmetic expression: ";
+    getline(cin, expression);
 
-    std::vector<std::string> tokens = tokenizeExpression(expression);
+    vector<string> tokens = tokenizeExpression(expression);
 
-    std::cout << "Tokens: ";
-    for (const std::string& token : tokens) {
-        std::cout << token << "		";
+    cout << "Tokens: ";
+    for (string token : tokens) {
+        cout << token << "		";
     }
-    std::cout << std::endl;
+    cout << endl;
 
     return 0;
 }

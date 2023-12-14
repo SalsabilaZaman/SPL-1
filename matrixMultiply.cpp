@@ -3,9 +3,9 @@
 #include<time.h>
 using namespace std;
 #define matMAX 100
-int matA[matMAX][matMAX];
-int matB[matMAX][matMAX];
-int matC[matMAX][matMAX];
+int mat_a[matMAX][matMAX];
+int mat_b[matMAX][matMAX];
+int mat_C[matMAX][matMAX];
 
 void multiply(int n,int r,int m,int c){
 	int sum=0;
@@ -14,8 +14,8 @@ void multiply(int n,int r,int m,int c){
 	   for(int j=0;j<c;j++){
 	     sum=0;	   
 	     for(int k=0;k<m;k++)
-	     	   sum+=(matA[i][k]*matB[k][j]);	
-	     matC[i][j]=sum;	
+	     	   sum+=(mat_a[i][k]*mat_b[k][j]);	
+	     mat_C[i][j]=sum;	
 	}
        }	
 	else{
@@ -23,8 +23,8 @@ void multiply(int n,int r,int m,int c){
 	    for(int j=0;j<c;j++){	   
 	      sum=0;
 	      for(int k=0;k<m;k++)
-	     	   sum+=(matC[i][k]*matB[k][j]);
-	    	matA[i][j]=sum;
+	     	   sum+=(mat_C[i][k]*mat_b[k][j]);
+	    	mat_a[i][j]=sum;
 	    }	
 	}
 
@@ -34,7 +34,7 @@ void matrixMultiply(){
 	srand(time(0));
 	for(int i=0;i<matMAX;i++)
 	   for(int j=0;j<matMAX;j++)
-	      matC[i][j]=0;
+	      mat_C[i][j]=0;
 	      
 	int N,row1,row2,column1,column2;
 	cout << "\nWelcome to Matrix Calculator"<<endl;
@@ -47,10 +47,10 @@ void matrixMultiply(){
 	
 	for(int i=0;i<row1;i++)
 	     for(int j=0;j<column1;j++)
-	         matA[i][j]=rand()%10;
+	         mat_a[i][j]=rand()%10;
 	for(int i=0;i<row1;i++){
 	     for(int j=0;j<column1;j++)
-		 cout << matA[i][j]<<" "; 
+		 cout << mat_a[i][j]<<" "; 
 	     cout<< endl;
 	}     	        
 	for(int i=1;i<N;i++){
@@ -66,10 +66,10 @@ void matrixMultiply(){
 		  cout <<"Matrix-"<< i+1 <<":"<<endl;
 		  for(int j=0;j<row2;j++)
 	     		for(int k=0;k<column2;k++)
-	        		 matB[j][k]=rand()%10;
+	        		 mat_b[j][k]=rand()%10;
 	          for(int j=0;j<row2;j++){
 	     		for(int k=0;k<column2;k++)
-		 		cout << matB[j][k] <<" "; 
+		 		cout << mat_b[j][k] <<" "; 
 	     		cout<< endl;
 		  }	 	  	
 		  multiply(i,row1,row2,column2);
@@ -81,9 +81,9 @@ void matrixMultiply(){
 	  for(int i=0;i<row1;i++){
 		for(int j=0;j<column2;j++){
 		  if(N%2!=0) 
-		   cout << matA[i][j] << " ";
+		   cout << mat_a[i][j] << " ";
 		  else
-		   cout << matC[i][j] << " ";
+		   cout << mat_C[i][j] << " ";
 		}   
 		cout << endl;
 	  }

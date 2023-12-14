@@ -21,27 +21,22 @@ vector<string> tokenizeExpression(string expression) {
     string token;
 
     for (char c : expression) {
-        if (c == ' ') {
+        if (c == ' ')
             continue;
-        }
 
         if (isOperator(c) || c == '(' || c == ')') {
-            
             if (!token.empty()) {
                 tokens.push_back(token);
                 token.clear();
             }
             tokens.push_back(string(1, c));
-        } else {
-            
+        } 
+        else 
             token += c;
-        }
     }
 
-   
-    if (!token.empty()) {
+    if (!token.empty()) 
         tokens.push_back(token);
-    }
 
     return tokens;
 }
@@ -70,43 +65,29 @@ int p(string op){
 }
 
 				// Function to build Expression Tree
-nptr build(vector<string> s)
-{
-
+nptr build(vector<string> s){
 	stack<nptr> stN;							// Stack to hold nodes
 	stack<string> stC;
 	nptr t, t1, t2;
 
-
-	for (int i = 0; i <s.size(); i++) 
-	{
-		if (s[i] == "(") {
+	for (int i = 0; i <s.size(); i++) {
+		if (s[i] == "(") 
 			stC.push(s[i]);
-		}
-
-		else if (isOperand(s[i])) 
-		{
+		else if (isOperand(s[i])){
 			t = newNode(s[i]);
 			stN.push(t);
 		}
-		else if (p(s[i]) > 0) 
-		{
-			while (
-				!stC.empty() && stC.top() != "("
-				&& ((s[i] != "^" && p(stC.top()) >= p(s[i]))
-					|| (s[i] == "^"
-						&& p(stC.top()) > p(s[i])))) 
-			{
+		else if (p(s[i]) > 0){
+			while ( !stC.empty() && stC.top() != "("
+			   && ((s[i] != "^" && p(stC.top()) >= p(s[i])) 
+			   || (s[i] == "^" && p(stC.top()) > p(s[i])))){
 
-				
 				t = newNode(stC.top());
 				stC.pop();
 
-		
 				t1 = stN.top();
 				stN.pop();
 
-				
 				t2 = stN.top();
 				stN.pop();
 
@@ -115,13 +96,10 @@ nptr build(vector<string> s)
 
 				stN.push(t);
 			}
-
-			
 			stC.push(s[i]);
 		}
 		else if (s[i] == ")") {
-			while (!stC.empty() && stC.top() != "(") 
-			{
+			while (!stC.empty() && stC.top() != "("){
 				t = newNode(stC.top());
 				stC.pop();
 				t1 = stN.top();
@@ -162,6 +140,7 @@ void postorder(nptr root)
 		postorder(root->left);
 		postorder(root->right);
 		cout << root->data;
+	      	
 		if(isOperand(root->data))
 			st.push(stod(root->data));
 		else{
@@ -179,6 +158,9 @@ void expressionEvaluate(string expression){
     //string expression;
     //cout << "Enter an arithmetic expression: ";
     //cin >>expression;
+    //cin.ignore(std::numeric_limits::max(), '\n');
+   // getline(cin,expression);
+    
     expression="("+expression+")";    
 
     vector<string> tokens = tokenizeExpression(expression);
@@ -187,9 +169,9 @@ void expressionEvaluate(string expression){
     for (string token : tokens) {
         cout << token << "  ";
     }
-    cout << endl;
 
     nptr root = build(tokens);
+    cout <<root->data<<endl;
     cout <<endl<<"Converted postfix expression-";	
     postorder(root);
     cout<<"\n\nAnswer="<<st.top()<<endl;

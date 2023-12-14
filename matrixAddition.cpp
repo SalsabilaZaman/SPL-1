@@ -4,8 +4,14 @@
 using namespace std;
 #define matMAX 100
 
-int mat_A[matMAX][matMAX]={0};
+int mat_A[matMAX][matMAX],mat_B[matMAX][matMAX];
 
+void Add(int row,int column){
+	for(int i=0;i<row;i++)
+	   for(int j=0;j<column;j++)
+	   	mat_A[i][j]+=mat_B[i][j];
+
+}
 void matrixAddition(){
 	srand(time(0));
 	int i,j,k;
@@ -26,11 +32,11 @@ void matrixAddition(){
 		    //cin >> input;
 		    input=rand()%10;
 		    cout << input <<" ";
-		    mat_A[j][k]+=input;
+		    mat_B[j][k]=input;
 		  }
 		  cout << endl;
 	 	}        
-		   
+		Add(row,column);   
 	}
 	cout << "\nResultant Matrix=" << endl;
 	for(j=0;j<row;j++){

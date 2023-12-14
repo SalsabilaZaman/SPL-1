@@ -4,14 +4,14 @@ using namespace std;
 vector<double> coefficients;
 vector<double> constants;
 
-bool isOp(string c) {
+bool IsOp(string c) {
     return c == "+" || c == "-" || c == "*" || c == "/" || c == "^";
 }
-bool isOperator(char c) {
+bool IsOperator(char c) {
     return c == '+' || c == '-' || c == '*' || c == '/' || c == '^'||c == '=';
 }
-bool isOperand(string token) {
-    return !isOp(token) && token != "(" && token != ")";
+bool IsOperand(string token) {
+    return !IsOp(token) && token != "(" && token != ")";
 }
 string makeOpposite(string sign){
 	string oppositeSign;
@@ -34,7 +34,7 @@ void standardizeEquation(vector<string> tokens){
 			   coOfX+=tokens[i].substr(0,tokens[i].find("x"));			
 			coefficients.push_back(stod(coOfX));
 		}
-		else if(!isOp(tokens[i])){
+		else if(!IsOp(tokens[i])){
 		    	string constant="";
 			if(i!=0)
 			   constant=tokens[i-1];
@@ -47,7 +47,7 @@ void standardizeEquation(vector<string> tokens){
 	while(i<tokens.size()){
 		if(tokens[i].find("x")!=string::npos){
 			string coOfX;
-			if(isOp(tokens[i-1]))
+			if(IsOp(tokens[i-1]))
 			   coOfX=makeOpposite(tokens[i-1]);
 			else
 			   coOfX=makeOpposite("+");   
@@ -57,9 +57,9 @@ void standardizeEquation(vector<string> tokens){
 			   coOfX+=tokens[i].substr(0,tokens[i].find("x"));			
 			coefficients.push_back(stod(coOfX));
 		}
-		else if(isOperand(tokens[i])){
+		else if(IsOperand(tokens[i])){
 		    	string constant;
-			if(isOp(tokens[i-1]))
+			if(IsOp(tokens[i-1]))
 			   constant=makeOpposite(tokens[i-1]);
 			else
 			   constant=makeOpposite("+");
@@ -79,7 +79,7 @@ vector<string> tokenizeEquation(string expression) {
             continue;
         }
 
-        if (isOperator(c) || c == '(' || c == ')') {
+        if (IsOperator(c) || c == '(' || c == ')') {
             
             if (!token.empty()) {
                 tokens.push_back(token);
@@ -100,11 +100,11 @@ vector<string> tokenizeEquation(string expression) {
     return tokens;
 }
 
-int main(){
+void  linearEquationSolver(){
 	string equation;
 	double a=0,b=0,x;
 	cout <<"Enter your equation:";
-	getline(cin,equation);
+	cin >> equation;
 	vector<string> tokens=tokenizeEquation(equation);
 	
 	cout<<"Tokens-";
@@ -112,6 +112,7 @@ int main(){
 		cout <<t<<" ";
 	cout <<endl;
 	standardizeEquation(tokens);
+	
 	cout<<"Coefficients-";
 	for(auto c1:coefficients){
 		a+=c1;
@@ -128,5 +129,4 @@ int main(){
 	cout << "b="<<b<<" ";
 	x=((-b)/a);
 	cout <<endl<<"x="<<x<<endl;	
-	return 0;
 }
