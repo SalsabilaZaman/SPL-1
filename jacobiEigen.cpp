@@ -64,22 +64,14 @@ bool allZero(){
 
 void reintialize(double arr[MAX1][MAX1]){
 	for(int i=0;i<row;i++)
-	    for(int j=0;j<row;j++)
-	    	arr[i][j]=INT_MIN;
-}
-void fix(double arr[MAX1][MAX1]){
-	for(int i=0;i<row;i++)
 	    for(int j=0;j<row;j++){
-	    	if(arr[i][j]==INT_MIN){
-	    		if(i==j)
-	    		   arr[i][j]=1;
-	    		else
-	    		   arr[i][j]=0;    	
-	    	}
-	    		
+	    	if(i!=j)
+	    	   arr[i][j]=0;
+	    	else
+	    	   arr[i][j]=1;
 	    }	
-	    	
 }
+
 void makeInverse(double arr[MAX1][MAX1]){
 	for(int i=0;i<row;i++)
 	    for(int j=0;j<row;j++)
@@ -141,6 +133,10 @@ void printOutput(){
 	}
 
 }
+
+
+
+
 void jacobi(){
 	int p=1,i,j;
 	double x,theta;
@@ -156,7 +152,6 @@ void jacobi(){
 		Q[j][j]=cos(theta);
 		Q[i][j]=-sin(theta);
 		Q[j][i]=sin(theta);
-		fix(Q);
 		makeInverse(Q);
 		multiply(p);
 		p++;	
